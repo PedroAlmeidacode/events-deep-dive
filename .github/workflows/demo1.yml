@@ -3,7 +3,18 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - master
+      - "dev-*"
+      - "feature/**" # allows more slashes
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - "dev-*"
+      - "feature/**" # allows more slashes
+    paths-ignore:
+      - ".gthub/workflows/*" # activates action if push to those branches does not contain a file with this path changed
 jobs:
   deploy:
     runs-on: ubuntu-latest
